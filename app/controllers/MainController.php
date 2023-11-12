@@ -1,7 +1,7 @@
 <?php
 
 
-namespace parcours\controllers;
+// namespace parcours\controllers;
 
 class MainController extends CoreController{
 

@@ -1,6 +1,8 @@
 <?php
 
-namespace parcours\controllers;
+// namespace parcours\controllers;
+
+// require_once __DIR__ . '/MainController.php';
 
 class CoreController{
 
@@ -16,8 +18,9 @@ class CoreController{
 		// Répérer l'instance de AltoRouter définie dans index.php
 		global $altoRouter;
 
-		
-      // require fait "comme si" il copie dans show() le code des template
+		// extract($viewdata);
+      
+		// require fait "comme si" il copie dans show() le code des template
 		// j'ai donc accès DANS LES TEMPLATES aux varaibles de show()
 		// donc je peux utiliser $viewData dans la code des template
 		
@@ -30,3 +33,5 @@ class CoreController{
 
 
 }
+
+?>

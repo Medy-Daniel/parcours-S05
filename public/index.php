@@ -1,18 +1,25 @@
 <?php
 
 // Charge toutes les dépendances du programme
+$BASE_URL = 'http://localhost/S05/parcours-S05/parcours-S05/public/';
+
 require __DIR__ . '/../vendor/autoload.php';
 
 
+require_once __DIR__ . '/../app/controllers/CoreController.php';
 
-require_once __DIR__ . '../../app/controllers/CoreController.php';
+
+require_once __DIR__ . '/../app/controllers/MainController.php';
+
+require_once __DIR__ . '/../app/controllers/ErrorController.php';
+
+
 
 // Constantes de configuration 
 // URL de base du site
-$BASE_URL = 'http://localhost/S05/parcours-S05/parcours-S05/public/';
 
 // Namespace où chercher les controllers
-$NAMESPACE_CONTROLLERS = 'parcours\controllers\\';
+// $NAMESPACE_CONTROLLERS = 'parcours\controllers\\';
 
 
 
@@ -46,6 +53,8 @@ $altoRouter->map(
 
 
 
+
+
 // ================
 // EXÉCUTION D'UNE ROUTE (DISPATCHER AVEC ALTOROUTER)
 // ================
@@ -56,33 +65,34 @@ $altoRouter->map(
 // sinon $match contient un tableau
 $match = $altoRouter->match();
 // echo 'Variable $match : ';
-// dump($match);
+// var_dump($match);
 
 // Traiter le cas où $match == false
 // Le cas où l'URL demandée ne match aucune route enregistrée dans AltoRouter (fonction map)
-// if( false == $match ) {
-// 	$controller = new ErrorController();
-// 	$controller->error404();
-// 	exit();
-// }
+if( false == $match ) {
+	$controller = new ErrorController();
+	$controller->error404();
+	exit();
+}
 
 // Récupérer le sous tableau associé à la clé 'target' dans $match
 $target = $match['target'];
 // echo 'Variable $target : ';
-// dump($target);
+// var_dump($target);
 
 // Récupérer le nom du controller associé à la clé 'controller' dans $target
-$controllerName = $NAMESPACE_CONTROLLERS . $target['controller']; // String
+$controllerName = $target['controller']; // String
 // echo 'Variable $controllerName : ';
 // dump($controllerName);
 
 // Récupérer le nom de la méthode associée à la clé 'method' dans $target
 $methodName = $target['method'];
 // echo 'Variable $methodName : ';
-// dump($methodName);
+// var_dump($methodName);
 
 // Nouvelle instance du controller pour la route demandée
 $controller = new $controllerName();
+// var_dump($controller);
 
 // echo '$params dans index.php :';
 // dump($paramsAltoRouter);
